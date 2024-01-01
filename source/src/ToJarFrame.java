@@ -13,7 +13,7 @@ public class ToJarFrame extends JFrame {
     /** Creates new form ToJarFrame */
     public ToJarFrame() {
         initComponents();
-        outputtarget.setText(System.getProperty("user.home") + System.getProperty("file.separator") + "ScratchBugOnAPlate.jar");
+        outputTarget.setText(System.getProperty("user.home") + System.getProperty("file.separator") + "ScratchBugOnAPlate.jar");
     }
 
     /** This method is called from within the constructor to
@@ -25,16 +25,16 @@ public class ToJarFrame extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code"> // GEN-BEGIN:initComponents
     private void initComponents() {
 
-        addrLabel = new JLabel();
+        addressLabel = new JLabel();
         titleLabel = new JLabel();
         address = new JTextField();
         title = new JTextField();
         compile = new JButton();
         targetLabel = new JLabel();
-        outputtarget = new JTextField();
+        outputTarget = new JTextField();
         select = new JButton();
         progress = new JProgressBar();
-        jButton1 = new JButton();
+        selectButton = new JButton();
 
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setTitle("ScratchToJAR");
@@ -51,26 +51,26 @@ public class ToJarFrame extends JFrame {
 
         compile.setText("Compile");
         compile.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                compileActionPerformed(evt);
+            public void actionPerformed(ActionEvent event) {
+                compileActionPerformed(event);
             }
         });
 
         targetLabel.setText("Target:");
 
-        outputtarget.setText("C:/");
+        outputTarget.setText("C:/");
 
         select.setText("Select");
         select.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                selectActionPerformed(evt);
+            public void actionPerformed(ActionEvent event) {
+                selectActionPerformed(event);
             }
         });
 
-        jButton1.setText("Select");
-        jButton1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        selectButton.setText("Select");
+        selectButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                selectButtonActionPerformed(event);
             }
         });
 
@@ -81,7 +81,7 @@ public class ToJarFrame extends JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(addrLabel)
+                    .addComponent(addressLabel)
                     .addComponent(titleLabel, GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                     .addComponent(targetLabel))
                 .addPreferredGap(ComponentPlacement.RELATED)
@@ -91,7 +91,7 @@ public class ToJarFrame extends JFrame {
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(compile))
                     .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(outputtarget, GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
+                        .addComponent(outputTarget, GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(select))
                     .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
@@ -99,7 +99,7 @@ public class ToJarFrame extends JFrame {
                             .addComponent(title, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
                             .addComponent(address, GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE))
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(selectButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -107,9 +107,9 @@ public class ToJarFrame extends JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(Alignment.BASELINE)
-                    .addComponent(addrLabel)
+                    .addComponent(addressLabel)
                     .addComponent(address, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(selectButton))
                 .addPreferredGap(ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(title, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -118,7 +118,7 @@ public class ToJarFrame extends JFrame {
                 .addGroup(layout.createParallelGroup(Alignment.TRAILING)
                     .addComponent(select)
                     .addGroup(layout.createParallelGroup(Alignment.BASELINE)
-                        .addComponent(outputtarget, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(outputTarget, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addComponent(targetLabel)))
                 .addPreferredGap(ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(Alignment.TRAILING)
@@ -129,76 +129,76 @@ public class ToJarFrame extends JFrame {
 
         pack();
     } // </editor-fold>//GEN-END:initComponents
-    private JFileChooser jfc = new JFileChooser();
+    private JFileChooser fileChooser = new JFileChooser();
 
-    private void selectActionPerformed(ActionEvent evt) { // GEN-FIRST:event_selectActionPerformed
-        jfc.showSaveDialog(this);
-        File selected = jfc.getSelectedFile();
+    private void selectActionPerformed(ActionEvent event) { // GEN-FIRST:event_selectActionPerformed
+        fileChooser.showSaveDialog(this);
+        File selected = fileChooser.getSelectedFile();
         if (selected != null) {
-            outputtarget.setText(selected.getAbsolutePath());
+            outputTarget.setText(selected.getAbsolutePath());
         }
     } // GEN-LAST:event_selectActionPerformed
 
-    private void compileActionPerformed(ActionEvent evt) { // GEN-FIRST:event_compileActionPerformed
+    private void compileActionPerformed(ActionEvent event) { // GEN-FIRST:event_compileActionPerformed
         progress.setIndeterminate(true);
-        outputtarget.setEditable(false);
+        outputTarget.setEditable(false);
         try {
-            ZipOutputStream out = new ZipOutputStream(new FileOutputStream(outputtarget.getText()));
-            ZipInputStream in = new ZipInputStream(ToJarFrame.class.getResourceAsStream("ScratchDesktop.dat"));
+            ZipOutputStream output = new ZipOutputStream(new FileOutputStream(outputTarget.getText()));
+            ZipInputStream input = new ZipInputStream(ToJarFrame.class.getResourceAsStream("ScratchDesktop.dat"));
             ZipEntry entry;
             byte[] buf = new byte[1024];
             int len;
-            while ((entry = in.getNextEntry()) != null) {
-                out.putNextEntry(new ZipEntry(entry.getName()));
+            while ((entry = input.getNextEntry()) != null) {
+                output.putNextEntry(new ZipEntry(entry.getName()));
                 if (!entry.getName().equals("config.xml") && !entry.getName().equals("project.dat")) {
-                    while ((len = in.read(buf)) != -1) {
-                        out.write(buf, 0, len);
+                    while ((len = input.read(buf)) != -1) {
+                        output.write(buf, 0, len);
                     }
                 } else {
                     if (entry.getName().equals("project.dat")) {
-                        FileInputStream fis = new FileInputStream(address.getText());
-                        while ((len = fis.read(buf)) != -1) {
-                            out.write(buf, 0, len);
+                        FileInputStream fileInputStream = new FileInputStream(address.getText());
+                        while ((len = fileInputStream.read(buf)) != -1) {
+                            output.write(buf, 0, len);
                         }
-                        fis.close();
+                        fileInputStream.close();
                     } else {
-                        Properties p = new Properties();
-                        p.setProperty("title", title.getText());
-                        // p.setProperty("codebase", "http://scratch.mit.edu/");
-                        // p.setProperty("project", "projects/" + address.getText() + "/downloadsb");
-                        p.setProperty("project", "project.dat");
-                        p.setProperty("autostart", "true");
-                        p.setProperty("compiler-version", "1.1");
-                        p.setProperty("compiler-time", System.currentTimeMillis() + "");
-                        p.storeToXML(out, null);
+                        Properties properties = new Properties();
+                        properties.setProperty("title", title.getText());
+                        // properties.setProperty("codebase", "http://scratch.mit.edu/");
+                        // properties.setProperty("project", "projects/" + address.getText() + "/downloadsb");
+                        properties.setProperty("project", "project.dat");
+                        properties.setProperty("autostart", "true");
+                        properties.setProperty("compiler-version", "1.1");
+                        properties.setProperty("compiler-time", System.currentTimeMillis() + "");
+                        properties.storeToXML(output, null);
                     }
                 }
-                out.closeEntry();
-                in.closeEntry();
+                output.closeEntry();
+                input.closeEntry();
             }
-            in.close();
-            out.close();
-            JOptionPane.showMessageDialog(this, "Sucessfully Created:\n" + outputtarget.getText());
-            Runtime.getRuntime().exec(new String[]{"java", "-jar", outputtarget.getText()});
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error: " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+            input.close();
+            output.close();
+            JOptionPane.showMessageDialog(this, "Sucessfully Created:\n" + outputTarget.getText());
+            Runtime.getRuntime().exec(new String[]{"java", "-jar", outputTarget.getText()});
+        } catch (Exception exception) {
+            JOptionPane.showMessageDialog(this, "Error: " + exception, "Error", JOptionPane.ERROR_MESSAGE);
         }
-        outputtarget.setEditable(true);
+        outputTarget.setEditable(true);
         progress.setIndeterminate(false);
     } // GEN-LAST:event_compileActionPerformed
 
-    private void jButton1ActionPerformed(ActionEvent evt) { // GEN-FIRST:event_jButton1ActionPerformed
-        jfc.showOpenDialog(this);
-        if (jfc.getSelectedFile() != null) {
-            address.setText(jfc.getSelectedFile().getAbsolutePath());
+    private void selectButtonActionPerformed(ActionEvent event) { // GEN-FIRST:event_selectButtonActionPerformed
+        fileChooser.showOpenDialog(this);
+        if (fileChooser.getSelectedFile() != null) {
+            address.setText(fileChooser.getSelectedFile().getAbsolutePath());
         }
-    } // GEN-LAST:event_jButton1ActionPerformed
+    } // GEN-LAST:event_selectButtonActionPerformed
 
-    private boolean isInteger(String str) {
+    private boolean isInteger(String string) {
         try {
-            Integer.valueOf(str);
+            Integer.valueOf(string);
             return true;
-        } catch (NumberFormatException ex) {
+        } catch (NumberFormatException exception) {
             return false;
         }
     }
@@ -219,35 +219,34 @@ public class ToJarFrame extends JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ToJarFrame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(ToJarFrame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(ToJarFrame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(ToJarFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException exception) {
+            Logger.getLogger(ToJarFrame.class.getName()).log(Level.SEVERE, null, exception);
+        } catch (InstantiationException exception) {
+            Logger.getLogger(ToJarFrame.class.getName()).log(Level.SEVERE, null, exception);
+        } catch (IllegalAccessException exception) {
+            Logger.getLogger(ToJarFrame.class.getName()).log(Level.SEVERE, null, exception);
+        } catch (UnsupportedLookAndFeelException exception) {
+            Logger.getLogger(ToJarFrame.class.getName()).log(Level.SEVERE, null, exception);
         }
         // </editor-fold>
 
         /* Create and display the form */
         EventQueue.invokeLater(new Runnable() {
-
             public void run() {
                 new ToJarFrame().setVisible(true);
             }
         });
     }
-    // Variables declaration - Do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel addrLabel;
-    private javax.swing.JTextField address;
-    private javax.swing.JButton compile;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JTextField outputtarget;
-    private javax.swing.JProgressBar progress;
-    private javax.swing.JButton select;
-    private javax.swing.JLabel targetLabel;
-    private javax.swing.JTextField title;
-    private javax.swing.JLabel titleLabel;
-    // End of variables declaration//GEN-END:variables
+    // Variables declaration - Do not modify // GEN-BEGIN:variables
+    private JLabel addressLabel;
+    private JTextField address;
+    private JButton compile;
+    private JButton selectButton;
+    private JTextField outputTarget;
+    private JProgressBar progress;
+    private JButton select;
+    private JLabel targetLabel;
+    private JTextField title;
+    private JLabel titleLabel;
+    // End of variables declaration // GEN-END:variables
 }
